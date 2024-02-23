@@ -1,26 +1,26 @@
 %---------------------------------------------------------------------------%
 %->> Cover information 封面信息
 %---------------------------------------------------------------------------%
-\classid{\ TP39\;}% 分类号
+\classid{\ XXXX\;}% 分类号
 \udc{\ \ \ 004\ \ }
 \confidential{\ \ \ \ \ 公开}% 密级
 %- 注：\title包含两个参数
 % \title{深圳大学\LaTeX{}模板}{}% 单行题目，第二个参数为空
-\title{xxxxxxxxxxx}{yyyyyyyyyyyyyyyy}% 多行题目
+\title{你的题目}{}% 多行题目
 %- 注：英文题目用于生成Abstract的页眉，只有一个参数
-\TITLE{aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa}
-\author{\ \ \ \ \ \ \ \ xxx}% 论文作者
-\idnumber{\ \ \ \ \ \ \ \ xxxxxxxxx}
-\major{\ \ \ \ \ \ \ \ 计算机科学与技术}% 学科专业名称
-\dtype{\ \ \ \ \ \ \ \ 工学}% 学科门类名称
+\TITLE{Your english title}
+\author{\ \ \ \ \ \ \ \ 张三}% 论文作者
+\idnumber{\ \ \ \ \ \ \ \ xxxxxxxx}
+\major{\ \ \ \ \ \ \ \ 计算机技术}% 学科专业名称
+\dtype{\ \ \ \ \ \ \ \ 工程}% 学科门类名称
 %- 注：以下两个类型支持多行
 \institute{\ \ \ \ \ \ \ \ 计算机与软件学院}% 院系名称单行
 % \institute{某某学院\\某某实验室}% 院系名称多行
-\advisor{\ \ \ \ \ \ \ \ xxxxxxxxxxx}% 指导教师单行
+\advisor{\ \ \ \ \ \ \ \ xxx}% 指导教师单行
 % \advisor{张老师\ 教授\\王老师\ 研究员}% 指导教师多行
 % !!! 记得切换学硕专硕
-\DEGREE{MasterXS}% 学术硕士
-% \DEGREE{MasterZY}% 专业硕士
+% \DEGREE{MasterXS}% 学术硕士
+\DEGREE{MasterZY}% 专业硕士
 %---------------------------------------------------------------------------%
 %->> other config
 %---------------------------------------------------------------------------%
@@ -59,13 +59,54 @@
 % - fancyhdr, header and footer
 % - biblatex
 %-
-
-
 \usepackage{graphicx}
 \DeclareGraphicsExtensions{.pdf,.jpg,.png,.eps,.tif,.bmp}% 默认图片格式
 \graphicspath{{Image/}}% 默认图片检索路径
-%-
-\usepackage[format=plain,hangindent=2.0em,font={small},skip=8pt,labelsep=space]{caption}
+%- 图、表、公式注解及标号
+%\usepackage[format=plain,hangindent=2.0em,font={small},skip=8pt,labelsep=space]{caption}
+\usepackage{xeCJKfntef}% underline for CJK
+\usepackage{listings}
+\setCJKfamilyfont{song}[AutoFakeBold=2]{SimSun.ttf}
+\AtBeginDocument{
+	\DeclareCaptionFont{songti}{\CJKfamily{song}}
+	% 更改标号为短横线连接
+	\renewcommand{\thefigure}{\thechapter-\arabic{figure}}
+	\renewcommand{\thetable}{\thechapter-\arabic{table}}
+	\renewcommand{\thelstlisting}{\thechapter-\arabic{lstlisting}}
+	\renewcommand{\theequation}{\thechapter-\arabic{equation}}
+	\renewcommand{\thedefinition}{\thechapter-\arabic{definition}}
+	\renewcommand{\thetheorem}{\thechapter-\arabic{theorem}}
+	\renewcommand{\theexample}{\thechapter-\arabic{example}}
+	%
+	\captionsetup[figure]{
+		format=plain,
+		font={bf,small,songti},
+		justification=centering,
+		hangindent=2.0em,
+		aboveskip=6pt,
+		belowskip=12pt,
+		labelsep=quad,
+		singlelinecheck=false
+	}
+	\captionsetup[table]{
+		format=plain,
+		font={bf,small,songti},
+		justification=centering,
+		aboveskip=12pt,
+		belowskip=6pt,
+		labelsep=quad,
+		singlelinecheck=false
+	}
+	\captionsetup[lstlisting]{
+		format=plain,
+		font={bf,small,songti},
+		justification=centering,
+		aboveskip=12pt,
+		belowskip=6pt,
+		labelsep=quad,
+		singlelinecheck=false
+	}
+}
 %-
 \usepackage{subcaption}% 处理子图
 %-
@@ -114,30 +155,13 @@
     % keywordstyle=\color{blue},
 }
 %-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-% 自用package建议注释掉没有用的包，有些包会产生冲突，但不建议全部注释，有一些可能是通用的。如果不知道要不要注释可以全部注释重新添加需要的包，或者全部保留编译有问题再排除。
-% \usepackage{multirow}
-% \usepackage{hyperref}
-% \usepackage{makecell}
-% \usepackage{adjustbox}
-% \usepackage{amsmath,amssymb}
-% \usepackage{array}
-% \usepackage{booktabs}
-% % \usepackage{longtable},amsfonts
-% \usepackage{tabularx}
-% \usepackage{algorithmic}
-% \usepackage{diagbox}
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-\usepackage[ruled,vlined,linesnumbered]{algorithm2e} % 算法描述
+\usepackage[ruled,vlined,linesnumbered,algochapter]{algorithm2e} % 算法描述
 \SetAlgorithmName{算法}{算法}{}
-\SetArgSty{textit}
 %---------------------------------------------------------------------------%
 %->> 配置数学环境
 %---------------------------------------------------------------------------%
-\usepackage{amsmath,amssymb}
-% \usepackage{pifont}
-\newcommand*{\dif}{\mathop{}\!\mathrm{d}}
+\usepackage{amsmath}
+\usepackage{amssymb}
 %- 符号表，参考 http://milde.users.sourceforge.net/LUCR/Math/mathpackages/amssymb-symbols.pdf
 \usepackage{amsthm} % 定理引理等环境
 \theoremstyle{plain}% for theorems, lemmas, propositions, etc
@@ -210,3 +234,8 @@
 %---------------------------------------------------------------------------%
 %->> END
 %---------------------------------------------------------------------------%
+\usepackage{multirow}
+\usepackage{longtable}
+\newcommand{\hide}[1]{}
+\usepackage{amsthm,amsmath,amssymb}
+\usepackage{mathrsfs}
